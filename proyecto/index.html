@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧠 Brainrots Store - Los Mejores Brainrots</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(147, 51, 234, 0.5); }
+            50% { box-shadow: 0 0 30px rgba(147, 51, 234, 0.8); }
+        }
+        
+        @keyframes bounce-in {
+            0% { transform: scale(0.3) rotate(-10deg); opacity: 0; }
+            50% { transform: scale(1.05) rotate(5deg); }
+            70% { transform: scale(0.9) rotate(-2deg); }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+        
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .float-animation { animation: float 3s ease-in-out infinite; }
+        .pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+        .bounce-in { animation: bounce-in 0.6s ease-out; }
+        .gradient-bg { 
+            background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
+            background-size: 400% 400%;
+            animation: gradient-shift 15s ease infinite;
+        }
+        
+        .product-card {
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px) rotateY(5deg);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .neon-text {
+            text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+        }
+    </style>
+</head>
+<body class="min-h-full bg-gray-900 text-white overflow-x-hidden">
+    <!-- Header animado -->
+    <header class="gradient-bg py-8 px-4 text-center relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-10 left-10 w-20 h-20 bg-yellow-400 rounded-full float-animation"></div>
+            <div class="absolute top-20 right-20 w-16 h-16 bg-pink-400 rounded-full float-animation" style="animation-delay: 1s;"></div>
+            <div class="absolute bottom-10 left-1/3 w-12 h-12 bg-blue-400 rounded-full float-animation" style="animation-delay: 2s;"></div>
+        </div>
+        
+        <div class="relative z-10">
+            <h1 class="text-6xl md:text-8xl font-black mb-4 neon-text text-white bounce-in">
+                BRAINROTS STORE
+            </h1>
+            <p class="text-xl md:text-2xl font-bold text-yellow-300 bounce-in" style="animation-delay: 0.3s;">
+                ¡Los mejores brainrots para tu colección! 🔥✨
+            </p>
+            <div class="mt-6 bounce-in" style="animation-delay: 0.6s;">
+                <button onclick="showCatalog()" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 px-8 rounded-full text-xl pulse-glow transform hover:scale-105 transition-all duration-300">
+                    🛍 Ver Catálogo
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sección Catálogo -->
+    <main class="py-12 px-4" id="catalog-section">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-black text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+                🎮 CATÁLOGO DE BRAINROTS 🎮
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="products-grid">
+                <!-- Los productos se generarán dinámicamente -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Sección de Compra -->
+    <section class="py-12 px-4 hidden" id="purchase-section">
+        <div class="max-w-2xl mx-auto">
+            <div class="text-center mb-8">
+                <button onclick="showCatalog()" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-xl mb-6 transition-all duration-300">
+                    ← Volver al Catálogo
+                </button>
+                <h2 class="text-5xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-400">
+                    🛒 FINALIZAR COMPRA 🛒
+                </h2>
+            </div>
+            
+            <div class="bg-gradient-to-br from-purple-900 to-blue-900 rounded-3xl p-8 border-4 border-purple-500">
+                <div class="text-center mb-8" id="purchase-product-info">
+                    <!-- Información del producto seleccionado -->
+                </div>
+                
+                <form id="purchase-form" class="space-y-6">
+                    <div>
+                        <label for="roblox-name" class="block text-lg font-bold text-yellow-300 mb-3">
+                            🎮 Tu nombre en Roblox:
+                        </label>
+                        <input type="text" id="roblox-name" required 
+                               class="w-full px-6 py-4 rounded-xl bg-gray-800 text-white border-2 border-purple-500 focus:border-yellow-400 focus:outline-none transition-colors duration-300 text-lg"
+                               placeholder="Ingresa tu username de Roblox">
+                    </div>
+                    
+
+                    
+                    <button type="submit" 
+                            class="w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white font-bold py-4 px-8 rounded-xl pulse-glow transform hover:scale-105 transition-all duration-300 text-xl">
+                        ✅ CONFIRMAR PEDIDO
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <!-- Sección de Confirmación de Pedido -->
+    <section class="py-12 px-4 hidden" id="order-confirmation-section">
+        <div class="max-w-2xl mx-auto">
+            <div class="bg-gradient-to-br from-green-900 to-blue-900 rounded-3xl p-8 border-4 border-green-500 text-center">
+                <div class="text-6xl mb-6">🎉</div>
+                <h2 class="text-4xl font-black text-green-400 mb-8">¡PEDIDO CONFIRMADO!</h2>
+                
+                <!-- Datos del pedido -->
+                <div class="bg-gray-800 rounded-2xl p-6 mb-8 text-left" id="order-details">
+                    <!-- Los detalles se llenarán dinámicamente -->
+                </div>
+                
+                <!-- Instrucciones -->
+                <div class="bg-yellow-900 border-2 border-yellow-500 rounded-2xl p-6 mb-8">
+                    <h3 class="text-2xl font-bold text-yellow-300 mb-4">📸 ¡IMPORTANTE!</h3>
+                    <p class="text-lg text-white mb-4">
+                        Para completar tu pedido, toma una captura de pantalla de los datos de arriba y envíamela por WhatsApp
+                    </p>
+                    <p class="text-yellow-300 font-bold">
+                        ¡Es súper fácil! Solo haz captura y envíala 📱
+                    </p>
+                </div>
+                
+                <!-- Botón de WhatsApp -->
+                <a href="https://wa.link/8skeux" target="_blank" rel="noopener noreferrer"
+                   class="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-xl text-xl pulse-glow transform hover:scale-105 transition-all duration-300 mb-6">
+                    📱 ENVIAR POR WHATSAPP
+                </a>
+                
+                <div class="mt-6">
+                    <button onclick="showCatalog()" 
+                            class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300">
+                        ← Volver al Catálogo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="script.jssss.js"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'992c62f0c378f78a',t:'MTc2MTE3MTY3My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
